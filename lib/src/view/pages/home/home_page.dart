@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../components/base.dart';
+import '../../components/base.dart';
+
+import 'sections/home_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,96 +12,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Base(
       pageHeight: 5000,
+      // TODO: Use sections insted of functions
       content: [
-        buildHome(),
+        const HomeSection(),
         buildAbout(),
         buildCourses(),
         buildTeam(),
       ],
     );
   }
-
-  buildHome() => Container(
-        color: const Color(0xFF181818),
-        padding: const EdgeInsets.only(top: 80, left: 66, bottom: 123),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: const Text(
-                "Get knowledge in one click.",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 96,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            const Text(
-              "Join us to become an expert in your field without leaving home",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 66),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF00B589),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                  child: const SizedBox(
-                    height: 68,
-                    width: 214,
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 21,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 39),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFFFF9800),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                  child: const SizedBox(
-                    height: 68,
-                    width: 214,
-                    child: Center(
-                      child: Text(
-                        "Sign in",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 21,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
 
   buildAbout() => Container(
         color: Colors.white,

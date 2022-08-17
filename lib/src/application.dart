@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'view/pages/home_page.dart';
-import 'view/pages/selected_course_page.dart';
+import 'view/pages/home/home_page.dart';
+import 'view/pages/selected_course/selected_course_page.dart';
 import 'view/pages/course/course_page.dart';
 import 'view/pages/complete_course_page.dart';
 
+// TODO: Refactor all of it
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
 
