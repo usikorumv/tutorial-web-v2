@@ -43,6 +43,9 @@ dependencies:
 
   flutter_markdown: ^0.6.10+3
 
+  scroll_to_index: ^3.0.1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
