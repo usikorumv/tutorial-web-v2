@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trendyol_web_v2/src/view/components/tab_with_divider.dart';
 
-class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+class Header extends StatefulWidget {
+  const Header({Key? key, this.onTabClicked}) : super(key: key);
+
+  final Function(int)? onTabClicked;
+
+  @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
+  late TabController tabController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    tabController = TabController(length: 5, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,65 +35,33 @@ class Header extends StatelessWidget {
         children: [
           Image.asset("assets/images/leadev_logo.png"),
           const Spacer(),
-          SizedBox(
-            height: 25.01,
-            child: Row(
-              children: [
-                Text(
-                  "Home",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const VerticalDivider(
-                  color: Colors.white,
-                  width: 35,
-                ),
-                Text(
-                  "About",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white.withOpacity(0.63),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const VerticalDivider(
-                  color: Colors.white,
-                  width: 35,
-                ),
-                Text(
-                  "Courses",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white.withOpacity(0.63),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const VerticalDivider(
-                  color: Colors.white,
-                  width: 35,
-                ),
-                Text(
-                  "Mentors",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white.withOpacity(0.63),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const VerticalDivider(
-                  color: Colors.white,
-                  width: 35,
-                ),
-                Text(
-                  "Contacts",
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white.withOpacity(0.63),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: TabBar(
+              controller: tabController,
+              labelPadding: EdgeInsets.zero,
+              indicatorPadding: EdgeInsets.zero,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorColor: Colors.transparent,
+              labelStyle: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelStyle: GoogleFonts.montserrat(
+                color: Colors.white.withOpacity(0.63),
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
+              onTap: widget.onTabClicked,
+              tabs: const [
+                TabWithDivider(title: "Home"),
+                TabWithDivider(title: "About"),
+                TabWithDivider(title: "Courses"),
+                TabWithDivider(title: "Mentors"),
+                TabWithDivider(
+                  title: "Contacts",
+                  isSeparator: false,
                 ),
               ],
             ),
