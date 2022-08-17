@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../components/base.dart';
 
@@ -27,7 +26,6 @@ class _CoursePageState extends State<CoursePage> {
   @override
   Widget build(BuildContext context) {
     return Base(
-      pageHeight: 2124,
       content: [
         Stack(
           alignment: Alignment.center,
@@ -43,7 +41,7 @@ class _CoursePageState extends State<CoursePage> {
               child: Visibility(
                 visible: !isAlreadyEnrolled,
                 child: const Text(
-                  "You have enroled to the course!",
+                  "Your Course",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -67,7 +65,7 @@ class _CoursePageState extends State<CoursePage> {
 
   buildTitle() => Column(
         children: [
-          const SizedBox(height: 185),
+          const SizedBox(height: 100),
           Row(
             children: const [
               SizedBox(width: 145),
@@ -85,7 +83,7 @@ class _CoursePageState extends State<CoursePage> {
         ],
       );
 
-  // TODO: Fix DRY
+  // TODO: Fix DRY and replace with TabBar
   buildNavbar() => Padding(
         padding: const EdgeInsets.only(top: 91, left: 142, bottom: 115),
         child: Row(
@@ -152,10 +150,11 @@ class _CoursePageState extends State<CoursePage> {
             ),
             RichText(
               text: TextSpan(
-                text: "Interview",
+                text: "Schedule",
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     currentIndex = 2;
+                    isAlreadyEnrolled = true;
                     setState(() {});
                   },
                 style: currentIndex == 2
@@ -189,30 +188,157 @@ class _CoursePageState extends State<CoursePage> {
           child: [
             SizedBox(
               height: 1005,
-              child: Column(
-                children: const [
-                  SizedBox(height: 12),
-                  TeacherMaterial(),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 876,
-              child: Column(
-                children: const [
-                  HomeWork(),
-                  HomeWork(),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 876,
               child: Stack(
                 children: [
                   Column(
                     children: const [
-                      SizedBox(height: 37),
-                      Schedule(),
+                      SizedBox(height: 12),
+                      TeacherMaterial(),
+                    ],
+                  ),
+                  const Positioned(
+                    left: 41,
+                    bottom: 38,
+                    child: Message(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 1160,
+              child: Column(
+                children: [
+                  const HomeWork(),
+                  const HomeWork(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 42, bottom: 73),
+                    child: Column(
+                      children: [
+                        IconButton(
+                          iconSize: 86,
+                          onPressed: () {
+                            currentIndex = 2;
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            Icons.add_circle_rounded,
+                            color: const Color(0xFF757575).withOpacity(0.61),
+                          ),
+                        ),
+                        const SizedBox(height: 11),
+                        const Text(
+                          "Add home work",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 506,
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      const SizedBox(height: 28),
+                      const Text(
+                        "Today",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        "06/08/22",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const SizedBox(),
+                                  const SizedBox(width: 9),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.black.withOpacity(0.47),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 36),
+                              Row(
+                                children: const [
+                                  Text("1."),
+                                  SizedBox(width: 9),
+                                  SizedBox(),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Deadline",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 51),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    "DAY",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  SizedBox(height: 14),
+                                  SizedBox(),
+                                ],
+                              ),
+                              const SizedBox(height: 22),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    "TIME",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  SizedBox(height: 14),
+                                  SizedBox(),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   const Positioned(
@@ -238,7 +364,7 @@ class Message extends StatelessWidget {
       children: [
         const CircleAvatar(
           radius: 36,
-          backgroundImage: AssetImage("assets/images/user_profile.png"),
+          backgroundImage: AssetImage("assets/images/teacher_avatar.png"),
         ),
         const SizedBox(width: 13),
         Container(
@@ -277,73 +403,6 @@ class Message extends StatelessWidget {
         //   ),
         // ),
       ],
-    );
-  }
-}
-
-class Schedule extends StatelessWidget {
-  const Schedule({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 50),
-      child: ListTile(
-        title: const Text(
-          "Today",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              RichText(
-                text: const TextSpan(
-                  style: TextStyle(
-                    color: Colors.black,
-                    height: 3,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  children: [
-                    TextSpan(
-                        text:
-                            "1.Lorem ipsum dolor sit amet, consectetur adipiscing elit\nYou: "),
-                    TextSpan(
-                      text: "https://drive.google.com/drive/u/0/my-drive\n",
-                      style: TextStyle(color: Color(0xFF5D51B5)),
-                    ),
-                    TextSpan(
-                        text:
-                            "2.Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolor sit amet, consectetur adipiscing elit\nYou: "),
-                    TextSpan(
-                      text: "https://drive.google.com/drive/u/0/my-drive\n",
-                      style: TextStyle(color: Color(0xFF5D51B5)),
-                    ),
-                    TextSpan(
-                        text:
-                            "3.Lorem ipsum dolor sit amet, consectetur adipiscing elit"),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 30),
-              Container(
-                height: 30,
-                width: 537,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(35),
-                  border: Border.all(color: const Color(0xFFA0A0A0)),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
