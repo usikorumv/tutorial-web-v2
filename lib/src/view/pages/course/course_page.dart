@@ -240,8 +240,9 @@ class _CoursePageState extends State<CoursePage> {
                 ],
               ),
             ),
-            SizedBox(
+            Container(
               height: 506,
+              padding: EdgeInsets.only(left: 59, right: 107),
               child: Stack(
                 children: [
                   Column(
