@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../../components/base.dart';
 
@@ -84,41 +85,97 @@ class _CoursePageState extends State<CoursePage> {
         ],
       );
 
+  // TODO: Fix DRY
   buildNavbar() => Padding(
         padding: const EdgeInsets.only(top: 91, left: 142, bottom: 115),
         child: Row(
           children: [
-            Text(
-              "Materials",
-              style: GoogleFonts.montserrat(
-                shadows: [
-                  const Shadow(color: Colors.white, offset: Offset(0, -6))
-                ],
-                color: Colors.transparent,
-                fontSize: 19,
-                fontWeight: FontWeight.w900,
-                decoration: TextDecoration.underline,
-                decorationColor: const Color(0xFF2FFFB4),
-                decorationThickness: 3,
+            RichText(
+              text: TextSpan(
+                text: "Materials",
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    currentIndex = 0;
+                    setState(() {});
+                  },
+                style: currentIndex == 0
+                    ? GoogleFonts.montserrat(
+                        shadows: [
+                          const Shadow(
+                              color: Colors.white, offset: Offset(0, -6))
+                        ],
+                        color: Colors.transparent,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w900,
+                        decoration: TextDecoration.underline,
+                        decorationColor: const Color(0xFF2FFFB4),
+                        decorationThickness: 3,
+                      )
+                    : GoogleFonts.montserrat(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 61),
-              child: Text(
-                "Home works",
-                style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 19,
-                  fontWeight: FontWeight.w600,
+              child: RichText(
+                text: TextSpan(
+                  text: "Home works",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      currentIndex = 1;
+                      isAlreadyEnrolled = true;
+                      setState(() {});
+                    },
+                  style: currentIndex == 1
+                      ? GoogleFonts.montserrat(
+                          shadows: [
+                            const Shadow(
+                                color: Colors.white, offset: Offset(0, -6))
+                          ],
+                          color: Colors.transparent,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                          decoration: TextDecoration.underline,
+                          decorationColor: const Color(0xFF2FFFB4),
+                          decorationThickness: 3,
+                        )
+                      : GoogleFonts.montserrat(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                        ),
                 ),
               ),
             ),
-            Text(
-              "Interview",
-              style: GoogleFonts.montserrat(
-                color: Colors.white,
-                fontSize: 19,
-                fontWeight: FontWeight.w600,
+            RichText(
+              text: TextSpan(
+                text: "Interview",
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    currentIndex = 2;
+                    setState(() {});
+                  },
+                style: currentIndex == 2
+                    ? GoogleFonts.montserrat(
+                        shadows: [
+                          const Shadow(
+                              color: Colors.white, offset: Offset(0, -6))
+                        ],
+                        color: Colors.transparent,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w900,
+                        decoration: TextDecoration.underline,
+                        decorationColor: const Color(0xFF2FFFB4),
+                        decorationThickness: 3,
+                      )
+                    : GoogleFonts.montserrat(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
+                      ),
               ),
             ),
           ],
@@ -166,7 +223,7 @@ class _CoursePageState extends State<CoursePage> {
                 ],
               ),
             )
-          ][2],
+          ][currentIndex],
         ),
       );
 }
@@ -385,6 +442,14 @@ class TeacherMaterial extends StatelessWidget {
           border: Border.all(
             color: Colors.black.withOpacity(0.53),
             width: 1,
+          ),
+        ),
+        child: const Text(
+          "https://www.figma.com/proto/Vr8YC4kDb0KHboaB5URU5P/tutor-web?node /tutor-web?node-id=150%3A1035",
+          style: TextStyle(
+            color: Color(0xFF5D51B5),
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
           ),
         ),
         // TODO: Paste actual .md data from assets for test
