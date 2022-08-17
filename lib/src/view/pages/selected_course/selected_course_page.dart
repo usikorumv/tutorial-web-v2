@@ -12,7 +12,6 @@ class SelectedCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Base(
-      pageHeight: 3800,
       content: [
         const CourseInfoSection(),
         buildTeacherInfo(),

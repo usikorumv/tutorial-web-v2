@@ -9,7 +9,6 @@ class CompleteCoursePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Base(
       // TODO: Fix this magic
-      pageHeight: 2120,
       showContacts: false,
       content: [
         buildCongratulations(),

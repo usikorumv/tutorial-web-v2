@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Base(
-      pageHeight: 5074,
       // TODO: Use sections insted of functions
       content: [
         const HomeSection(),
